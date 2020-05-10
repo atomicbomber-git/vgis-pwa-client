@@ -40,7 +40,7 @@
         <div
           v-show="this.is_virtual_tour_mode"
           ref="streetview_ref"
-          style="height: 100%; border: medium solid red">
+          style="height: 100%">
         </div>
       </template>
     </div>
@@ -189,7 +189,7 @@
 
           links: this.panoramaLinksToSVLinks(panorama.panorama_links),
 
-          copyright: 'Imagery (c) 2010 Rizki Oktaviano',
+          copyright: `Imagery (c) ${(new Date()).getFullYear()} Rizki Oktaviano`,
           tiles: {
             tileSize: new google.maps.Size(1024, 512),
             worldSize: new google.maps.Size(1024, 512),
