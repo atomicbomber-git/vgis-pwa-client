@@ -20,10 +20,19 @@
       class="collapse navbar-collapse"
       :class="{ show: !this.collapsed }"
       id="collapsibleNavId">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      </ul>
+
+
+      <div class="ml-auto">
+        <button class="btn btn-light w-100"
+                @click="onUpdateButtonClick">
+          Reload
+          <i class="fas fa-sync-alt  "></i>
+        </button>
+      </div>
+
     </div>
   </nav>
+
 </template>
 <script>
   export default {
@@ -31,6 +40,12 @@
     data() {
       return {
         collapsed: true,
+      }
+    },
+
+    methods: {
+      onUpdateButtonClick() {
+        window.location.reload()
       }
     }
   }

@@ -18,13 +18,25 @@ const routes = [
 ]
 
 for (const routeName in routeMap) {
-  routes.push(routeMap[routeName])
+  routes.push({
+    ...routeMap[routeName],
+    name: routeName
+  })
 }
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.path === routeMap.splash.path) {
+    next(false)
+    return
+  }
+  
+  next()
 })
 
 export default router
