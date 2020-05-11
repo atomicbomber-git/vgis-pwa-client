@@ -9,7 +9,7 @@
           style="height: 100%"
           v-if="!is_virtual_tour_mode"
           ref="map_ref"
-          :center="{lat: map_config.center.latitude, lng: map_config.center.longitude}"
+          :center="{lat: map_center.lat, lng: map_center.lng}"
           :zoom="map_config.zoom"
           map-type-id="terrain"
         >
@@ -30,7 +30,6 @@
                 strokeWeight: 2
             }"
               v-for="link in panorama.panorama_links"
-              @click="onPanoramaLinkLineClick($event, link)"
               :key="link.id"
               :path="[{lat: panorama.latitude, lng: panorama.longitude}, {lat: link.end.latitude, lng: link.end.longitude}]"
             />
@@ -90,7 +89,12 @@
         map_config: null,
         is_ready: false,
         is_virtual_tour_mode: false,
-        selected_panorama: null
+        selected_panorama: null,
+
+        map_center: {
+          lat: null,
+          lng: null,
+        }
       }
     },
 
@@ -105,6 +109,24 @@
           }
         }
       },
+
+      map_config(new_map_config) {
+        if (new_map_config === null) {
+          return
+        }
+
+        this.map_center = {
+          lat: new_map_config.center.latitude,
+          lng: new_map_config.center.longitude,
+        }
+      },
+
+      selected_panorama(new_selected_panorama) {
+        this.map_center = {
+          lat: new_selected_panorama.latitude,
+          lng: new_selected_panorama.longitude,
+        }
+      }
     },
 
     computed: {
@@ -171,6 +193,11 @@
 
             return null
           });
+
+          this.gmap_panorama.addListener('pano_changed', () => {
+            const pano_id = this.gmap_panorama.getPano()
+            this.selected_panorama = this.panoramas.find(pano => pano.id == pano_id)
+          })
 
           this.map.setStreetView(this.gmap_panorama)
           return
