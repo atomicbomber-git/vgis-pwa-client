@@ -31,11 +31,10 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  if (to.path === routeMap.splash.path) {
+  if ((to.path === routeMap.splash.path) && (from.path !== "/")) {
     next(false)
     return
   }
-  
   next()
 })
 
