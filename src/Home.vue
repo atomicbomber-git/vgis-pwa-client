@@ -92,8 +92,8 @@
         selected_panorama: null,
 
         map_center: {
-          lat: null,
-          lng: null,
+          lat: -0.14581999411186639,
+          lng: 109.40335576688987,
         }
       }
     },

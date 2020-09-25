@@ -1,36 +1,42 @@
 <template>
-  <div class="bg-primary text-white d-flex flex-column justify-content-center vh-100">
-    <h1 class="text-center">
-      Virtual Tour
-    </h1>
+  <div
+      class="main vh-100">
   </div>
 </template>
 
-<script>
-  export default {
-    name: "SplashScreen",
+<style>
+  .main {
+    background-size: cover;
+    background-image: url("./assets/splash_screen.jpg");
+  }
+</style>
 
-    data() {
-      return {
-        countdown_seconds: 3,
-        countdown_interval_handle: null,
+<script>
+
+export default {
+  name: 'SplashScreen',
+
+  data () {
+    return {
+      countdown_seconds: 3,
+      countdown_interval_handle: null,
+    }
+  },
+
+  watch: {
+    countdown_seconds (new_value) {
+      if (new_value === 0) {
+        window.clearInterval(this.countdown_interval_handle)
+        this.$router.push('/home')
       }
     },
+  },
 
-    watch: {
-      countdown_seconds(new_value) {
-        if (new_value === 0) {
-          window.clearInterval(this.countdown_interval_handle)
-          this.$router.push('/home')
-        }
-      },
-    },
-
-    mounted() {
-      this.countdown_interval_handle = window
+  mounted () {
+    this.countdown_interval_handle = window
         .setInterval(() => {
-        this.countdown_seconds--
-      }, 1000)
-    }
+          this.countdown_seconds--
+        }, 1000)
   }
+}
 </script>
