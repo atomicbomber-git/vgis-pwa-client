@@ -1,30 +1,36 @@
 <template>
-  <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-sm navbar-dark"
+       style="background-color: #00aeff"
+  >
     <a class="navbar-brand"
-       href="#">
-      Virtual Tour Client
+       href="#"
+    >
+      VT Supadio
     </a>
     <button
-      @click="collapsed = !collapsed"
-      class="navbar-toggler d-lg-none"
-      type="button"
-      data-toggle="collapse"
-      data-target="#collapsibleNavId"
-      aria-controls="collapsibleNavId"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
+        aria-controls="collapsibleNavId"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        class="navbar-toggler d-lg-none"
+        data-target="#collapsibleNavId"
+        data-toggle="collapse"
+        type="button"
+        @click="collapsed = !collapsed"
+    >
       <i class="fas fa-list"></i>
     </button>
 
     <div
-      class="collapse navbar-collapse"
-      :class="{ show: !this.collapsed }"
-      id="collapsibleNavId">
+        id="collapsibleNavId"
+        :class="{ show: !this.collapsed }"
+        class="collapse navbar-collapse"
+    >
 
 
       <div class="ml-auto">
         <button class="btn btn-light w-100"
-                @click="onUpdateButtonClick">
+                @click="onUpdateButtonClick"
+        >
           Reload
           <i class="fas fa-sync-alt  "></i>
         </button>
@@ -35,18 +41,18 @@
 
 </template>
 <script>
-  export default {
-    name: 'Navbar',
-    data() {
-      return {
-        collapsed: true,
-      }
-    },
+export default {
+  name: 'Navbar',
+  data () {
+    return {
+      collapsed: true,
+    }
+  },
 
-    methods: {
-      onUpdateButtonClick() {
-        window.location.reload()
-      }
+  methods: {
+    onUpdateButtonClick () {
+      window.location.reload()
     }
   }
+}
 </script>
