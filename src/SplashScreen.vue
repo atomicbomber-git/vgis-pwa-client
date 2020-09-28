@@ -1,17 +1,19 @@
 <template>
   <div
-      class="main vh-100">
+      @click="onScreenClick"
+      class="main vh-100"
+      :style="{
+        'background-size': 'cover',
+        'background-image': `url('${this.current_image}')`,
+      }"
+  >
   </div>
 </template>
 
-<style>
-  .main {
-    background-size: cover;
-    background-image: url("./assets/splash_screen.jpg");
-  }
-</style>
-
 <script>
+
+import splash_screen_image from "./assets/splash_screen.jpg";
+import welcome_screen_image from "./assets/welcome_screen.jpg";
 
 export default {
   name: 'SplashScreen',
@@ -23,18 +25,36 @@ export default {
     }
   },
 
+  methods: {
+    onScreenClick() {
+      if (this.countdown_seconds > 0) {
+        return
+      }
+
+      this.$router.push('/home')
+    },
+  },
+
+  computed: {
+    current_image() {
+      if (this.countdown_seconds > 0) {
+        return splash_screen_image
+      }
+      return welcome_screen_image
+    },
+  },
+
   watch: {
     countdown_seconds (new_value) {
       if (new_value === 0) {
         window.clearInterval(this.countdown_interval_handle)
-        this.$router.push('/home')
       }
     },
   },
 
   mounted () {
     this.countdown_interval_handle = window
-        .setInterval(() => {
+      .setInterval(() => {
           this.countdown_seconds--
         }, 1000)
   }
