@@ -2,11 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import SplashScreen from '../SplashScreen'
 import Home from '../Home'
+import Menu from '@/Menu'
 
 Vue.use(VueRouter)
 
 export const routeMap = {
   home: { path: '/home', component: Home },
+  menu: { path: '/menu', component: Menu },
   splash: { path: '/splash', component: SplashScreen }
 }
 

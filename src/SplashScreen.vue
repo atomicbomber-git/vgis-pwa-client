@@ -1,14 +1,15 @@
 <template>
   <div
-      class="main vh-100">
+      class="main vh-100"
+  >
   </div>
 </template>
 
 <style>
-  .main {
-    background-size: cover;
-    background-image: url("./assets/splash_screen.jpg");
-  }
+.main {
+  background-size: cover;
+  background-image: url("./assets/splash_screen.jpg");
+}
 </style>
 
 <script>
@@ -27,7 +28,7 @@ export default {
     countdown_seconds (new_value) {
       if (new_value === 0) {
         window.clearInterval(this.countdown_interval_handle)
-        this.$router.push('/home')
+        this.$router.push('/menu')
       }
     },
   },
