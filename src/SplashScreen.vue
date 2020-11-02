@@ -31,7 +31,7 @@ export default {
         return
       }
 
-      this.$router.push('/home')
+      this.$router.push('/menu')
     },
   },
 

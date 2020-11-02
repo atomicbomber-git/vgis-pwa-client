@@ -7,8 +7,8 @@ import Menu from '@/Menu'
 Vue.use(VueRouter)
 
 export const routeMap = {
-  home: { path: '/home', component: Home },
-  menu: { path: '/menu', component: Menu },
+  home: { path: '/home', name: 'home', component: Home, props: true },
+  menu: { path: '/menu', name: 'menu', component: Menu, props: true },
   splash: { path: '/splash', component: SplashScreen }
 }
 

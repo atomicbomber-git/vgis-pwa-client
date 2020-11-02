@@ -74,11 +74,19 @@
     name: "Home",
     components: {Navbar},
 
+    props: {
+      virtualTour: Boolean,
+    },
+
     mounted() {
       this.fetchData()
         .then(() => {
           this.$refs.map_ref.$mapPromise.then(map => {
             this.map = map;
+
+            if (this.virtualTour) {
+              this.is_virtual_tour_mode = true
+            }
           })
         })
     },
